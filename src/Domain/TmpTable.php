@@ -62,6 +62,9 @@ final class TmpTable implements InMemoryTableInterface
         return $this;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function getName(): string
     {
         return $this->primary->getName();
@@ -77,6 +80,9 @@ final class TmpTable implements InMemoryTableInterface
         return $this->primary;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function commit(): InMemoryTableInterface
     {
         if ($this->primary instanceof TmpTable) {

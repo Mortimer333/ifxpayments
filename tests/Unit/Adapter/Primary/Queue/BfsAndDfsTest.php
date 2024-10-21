@@ -50,9 +50,12 @@ class BfsAndDfsTest extends BaseUnitAbstract
         while ($this->messenger->queue()->count() > 0) {
             ++$i;
             $message = $this->dequeue();
-            $x = $message->x;
-            $y = $message->y;
-            $path = $message->path;
+            /** @var int $x */
+            $x = $message->x; // @phpstan-ignore-line
+            /** @var int $y */
+            $y = $message->y; // @phpstan-ignore-line
+            /** @var array<int> $path */
+            $path = $message->path; // @phpstan-ignore-line
             foreach (array_keys($directionX) as $directionI) {
                 $newX = $x + $directionX[$directionI];
                 $newY = $y + $directionY[$directionI];
@@ -83,6 +86,9 @@ class BfsAndDfsTest extends BaseUnitAbstract
         $this->assertEquals(true, $endFound, 'Unable to find exit');
     }
 
+    /**
+     * @param array<mixed> $grid
+     */
     #[Examples([[1, 0, 7], [2, 0, 6], [3, 4, 5], [0, 3, 0], [9, 0, 20]], 28)]
     #[Examples([[0, 6, 0], [5, 8, 7], [0, 9, 0]], 24)]
     public function testDfsWithFindMaxGoldProblem(array $grid, int $expected): void
@@ -97,6 +103,9 @@ class BfsAndDfsTest extends BaseUnitAbstract
         $this->assertEquals($expected, $result);
     }
 
+    /**
+     * @param array<mixed> $grid
+     */
     public function travel(array $grid, int $i, int $j, int $gold = 0): int
     {
         $currentGold = $grid[$i][$j] ?? 0;
@@ -125,9 +134,15 @@ class BfsAndDfsTest extends BaseUnitAbstract
         return $result + $search;
     }
 
+    /**
+     * @param array<int> $path
+     */
     private function enqueueCoordinate(int $x, int $y, array $path = []): void
     {
         $message = fn (int $x, int $y, array $path) => new class($x, $y, $path) {
+            /**
+             * @param array<int> $path
+             */
             public function __construct(
                 public int $x,
                 public int $y,

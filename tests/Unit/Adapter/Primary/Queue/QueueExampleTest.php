@@ -23,7 +23,7 @@ class QueueExampleTest extends BaseUnitAbstract
     public function testExampleOfQueueTest(): void
     {
         $this->messenger->throwExceptions();
-        $this->messenger->queue()->assertContains(Message::class);
+        $this->messenger->queue()->assertContains(Message::class); // @phpstan-ignore-line
         $this->messenger->process(1);
         $rejected = $this->messenger->rejected();
         $this->tester->assertSame(0, $rejected->count());

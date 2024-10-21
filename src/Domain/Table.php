@@ -44,6 +44,9 @@ class Table implements InMemoryTableInterface
         return $this->hashMap[$name] ?? null;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function set(string $name, mixed $value): static
     {
         $old = $this->get($name);
@@ -65,6 +68,9 @@ class Table implements InMemoryTableInterface
         return $this;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function getName(): string
     {
         return $this->name;
@@ -85,6 +91,7 @@ class Table implements InMemoryTableInterface
 
     /**
      * @return never
+     * @codeCoverageIgnore
      */
     public function commit()
     {

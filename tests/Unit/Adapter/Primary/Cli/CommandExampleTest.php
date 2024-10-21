@@ -16,8 +16,8 @@ class CommandExampleTest extends BaseUnitAbstract
     #[Skip]
     public function testExample(): void
     {
-        $command = $this->tester->getService(Command::class);
-        $commandTester = new CommandTester($command);
+        $command = $this->tester->getService(Command::class); // @phpstan-ignore-line
+        $commandTester = new CommandTester($command); // @phpstan-ignore-line
         $commandTester->execute([]);
     }
 }

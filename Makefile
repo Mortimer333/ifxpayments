@@ -65,7 +65,7 @@ e2e-test:
 
 coverage-test:
 	@echo "Run all tests and get html coverage"
-	@docker exec -ti box-php-fpm bash -c 'XDEBUG_MODE=coverage php vendor/bin/codecept run Unit,E2E --coverage-html'
+	@docker exec -ti box-php-fpm bash -c 'XDEBUG_MODE=coverage php vendor/bin/codecept run Unit,E2E --coverage-xml'
 
 test-all:
 	$(MAKE) reset-test-db
