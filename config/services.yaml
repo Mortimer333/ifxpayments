@@ -3,6 +3,10 @@ services:
         autowire: true
         autoconfigure: true
 
+    _instanceof:
+        App\Application\Service\OpenCloseServiceInterface:
+            tags: [ 'app.service.test' ]
+
     App\:
         resource: '../src/'
         exclude:
@@ -12,6 +16,25 @@ services:
     App\Adapter\Secondary\Purger\TestPurgerFactory:
         tags:
             - { name: 'doctrine.fixtures.purger_factory', alias: 'test_purger' }
+
+    App\Application\Service\OpenCloseTestPolicy:
+        public: true
+        arguments:
+            $services: !tagged app.service.test
+
+    App\Application\Service\Test1Service:
+        public: true
+
+    App\Application\Service\DefaultTestService:
+        public: true
+
+    app.service.default:
+        alias: App\Application\Service\DefaultTestService
+        public: true
+
+    app.service.test1:
+        alias: App\Application\Service\Test1Service
+        public: true
 
 when@test:
     services:
